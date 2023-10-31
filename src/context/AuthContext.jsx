@@ -35,7 +35,7 @@ export function AuthContextProvider({ children }) {
   };
 
   const loginHandler = (newToken) => {
-    // calculate expiretime timestamp
+    // calculate expire time timestamp
     const expireDurationMin = 60;
     const expireTime = new Date().getTime() + expireDurationMin * 60 * 1000;
 

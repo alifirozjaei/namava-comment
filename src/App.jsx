@@ -1,14 +1,28 @@
 import React from "react";
 import "./App.css";
 import { ToastProvider } from "./context/ToastContext.jsx";
-import { Login } from "./pages/Login.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import ToastWrapper from "./components/Toast/ToastWrapper.jsx";
+import CommentPage from "./pages/CommentPage/CommentPage.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/",
+    element: <CommentPage />,
+  },
+]);
+
 const App = () => {
   return (
     <>
       <ToastProvider>
         <ToastWrapper />
-        <Login />
+        <RouterProvider router={router} />
       </ToastProvider>
     </>
   );

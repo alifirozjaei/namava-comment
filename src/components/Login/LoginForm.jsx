@@ -8,6 +8,7 @@ import { ToastContext } from "../../context/ToastContext.jsx";
 import FormLink from "../Form/FormLink.jsx";
 import SubmitButton from "../Form/SubmitButton.jsx";
 import { AuthContext } from "../../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const FORM_INITIAL_VALUE = {
   email: "",
@@ -48,6 +49,7 @@ const LoginForm = () => {
   const [form, dispatch] = useReducer(formReducer, FORM_INITIAL_VALUE);
   const toasts = useContext(ToastContext);
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const changeEmailHandler = (emailValue) => {
     dispatch({ type: "change_email", value: emailValue });
@@ -90,6 +92,7 @@ const LoginForm = () => {
           } else {
             toasts.addToast("ورود موفقیت آمیز بود.");
             auth.login(data.result);
+            navigate("/")
           }
         })
         .catch((error) => console.log("Error in login", error))

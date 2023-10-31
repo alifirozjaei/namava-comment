@@ -1,8 +1,8 @@
 import React from "react";
-import NamavaIcon from "../components/Icons/NamavaIcon.jsx";
-import LoginForm from "../components/Login/LoginForm.jsx";
-import styles from "./login.module.css";
-export const Login = () => {
+import NamavaIcon from "../../components/Icons/NamavaIcon.jsx";
+import LoginForm from "../../components/Login/LoginForm.jsx";
+import styles from "./login-page.module.css";
+const LoginPage = () => {
   return (
     <div className={styles["login"]}>
       <div className={styles["form-container"]}>
@@ -15,3 +15,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default LoginPage;
