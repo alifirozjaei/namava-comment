@@ -1,0 +1,10 @@
+.form-link {
+  color: var(--gray-white, #fff);
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+
+  font-family: IRANYekan;
+  font-size: 12px;
+  display: block;
+  margin-top: 40px;
+}

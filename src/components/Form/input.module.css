@@ -1,0 +1,53 @@
+.form-control {
+  padding-bottom: 10px;
+  position: relative;
+}
+
+.form-label {
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  outline: none;
+  border: none;
+  direction: ltr;
+  text-align: left;
+  height: 52px;
+  padding: 0 16px;
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: IRANYekan;
+  font-size: 16px;
+  position: relative;
+}
+
+.form-input::placeholder {
+  text-align: right;
+  direction: rtl;
+}
+
+.hide-button {
+  position: absolute;
+  top: 35px;
+  right: 5px;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hide-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
