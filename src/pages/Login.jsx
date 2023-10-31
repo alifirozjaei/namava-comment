@@ -1,6 +1,5 @@
 import React from "react";
 import NamavaIcon from "../components/Icons/NamavaIcon.jsx";
-import ToastWrapper from "../components/Toast/ToastWrapper.jsx";
 import LoginForm from "../components/Login/LoginForm.jsx";
 import styles from "./login.module.css";
 export const Login = () => {

@@ -7,6 +7,7 @@ import login from "../../services/login.js";
 import { ToastContext } from "../../context/ToastContext.jsx";
 import FormLink from "../Form/FormLink.jsx";
 import SubmitButton from "../Form/SubmitButton.jsx";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const FORM_INITIAL_VALUE = {
   email: "",
@@ -46,6 +47,7 @@ function formReducer(data, action) {
 const LoginForm = () => {
   const [form, dispatch] = useReducer(formReducer, FORM_INITIAL_VALUE);
   const toasts = useContext(ToastContext);
+  const auth = useContext(AuthContext);
 
   const changeEmailHandler = (emailValue) => {
     dispatch({ type: "change_email", value: emailValue });
@@ -87,11 +89,7 @@ const LoginForm = () => {
             }
           } else {
             toasts.addToast("ورود موفقیت آمیز بود.");
-            console.log("login success", data.result);
-            localStorage.setItem("token", data.result);
-            setTimeout(() => {
-              window.location.replace("https://www.namava.ir/home");
-            }, 3000);
+            auth.login(data.result);
           }
         })
         .catch((error) => console.log("Error in login", error))
