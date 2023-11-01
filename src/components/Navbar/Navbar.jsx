@@ -41,6 +41,7 @@ const Navbar = () => {
       </span>
       <NamavaIcon />
 
+      {/* navabr for md, lg, xlg size */}
       <nav className={styles["nav"]}>
         {navItems.map((item, index) => (
           <a href="#" className={styles["nav-link"]} key={index}>
@@ -49,6 +50,7 @@ const Navbar = () => {
         ))}
       </nav>
 
+      {/* navbar for sm size */}
       {navbarToggle && (
         <nav className={styles["nav-sm"]}>
           <div className={styles["menu"]}>
@@ -78,11 +80,15 @@ const Navbar = () => {
       <div className={styles["navbar-action"]}>
         <SearchIcon />
         <ShuffleIcon />
+
+        {/* if user is logged in show logout button */}
         {auth.isLoggedIn && (
           <button className={styles["btn"]} onClick={auth.logout}>
             خروج
           </button>
         )}
+
+        {/* if user is not logged in show login button */}
         {!auth.isLoggedIn && (
           <button className={styles["btn"]} onClick={() => navigate("/login")}>
             ورود

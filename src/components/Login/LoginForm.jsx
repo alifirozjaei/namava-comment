@@ -92,7 +92,7 @@ const LoginForm = () => {
           } else {
             toasts.addToast("ورود موفقیت آمیز بود.");
             auth.login(data.result);
-            navigate("/")
+            navigate("/comments")
           }
         })
         .catch((error) => console.log("Error in login", error))

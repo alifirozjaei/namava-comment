@@ -12,8 +12,12 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: "/",
+    path: "/comments",
     element: <CommentPage />,
+  },
+  {
+    path: "/",
+    element: <p>Home</p>,
   },
 ]);
 

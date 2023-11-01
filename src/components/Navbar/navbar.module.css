@@ -1,3 +1,4 @@
+/* animation for menu */
 @keyframes move {
   from {
     transform: translateX(100%);
@@ -24,6 +25,7 @@
   left: 0;
   height: 100vh;
   width: 100%;
+  z-index: 10;
 }
 
 .nav-sm .menu {

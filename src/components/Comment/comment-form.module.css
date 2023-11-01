@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.form svg {
+  margin-top: 5px;
+}
+
+.form > div {
+  flex-grow: 1;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 52px;
+  border-radius: 5px;
+  background: #f2f2f2;
+  padding: 16px;
+  color: #222327;
+  font-family: IRANYekan;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+

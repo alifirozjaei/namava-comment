@@ -21,6 +21,7 @@ a {
 body {
   font-family: iranyekan;
   background-color: rgba(18, 18, 18, 1);
+  color: white;
 }
 
 *::-webkit-scrollbar {
