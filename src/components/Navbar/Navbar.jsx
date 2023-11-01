@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import NamavaIcon from "../Icons/NamavaIcon.jsx";
-import "./navbar.css";
+import styles from "./navbar.module.css";
 import SearchIcon from "../Icons/SearchIcon.jsx";
 import ShuffleIcon from "../Icons/ShuffleIcon.jsx";
 import MenuIcon from "../Icons/MenuIcon.jsx";
@@ -30,31 +30,34 @@ const Navbar = () => {
   const [navbarToggle, setNavbarToggle] = useState(false);
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
-  console.log(auth);
+
   return (
-    <header className="header">
-      <span className="toggle-navbar" onClick={() => setNavbarToggle(true)}>
+    <header className={styles["header"]}>
+      <span
+        className={styles["toggle-navbar"]}
+        onClick={() => setNavbarToggle(true)}
+      >
         <MenuIcon />
       </span>
       <NamavaIcon />
 
-      <nav className="nav">
+      <nav className={styles["nav"]}>
         {navItems.map((item, index) => (
-          <a href="#" className="nav-link" key={index}>
+          <a href="#" className={styles["nav-link"]} key={index}>
             {item.title}
           </a>
         ))}
       </nav>
 
       {navbarToggle && (
-        <nav className="nav-sm">
-          <div className="menu">
+        <nav className={styles["nav-sm"]}>
+          <div className={styles["menu"]}>
             <div
               className="row align-items-center"
               style={{ marginBottom: "20px" }}
             >
               <span
-                className="toggle-navbar"
+                className={styles["toggle-navbar"]}
                 onClick={() => setNavbarToggle(false)}
               >
                 <MenuIcon />
@@ -63,7 +66,7 @@ const Navbar = () => {
             </div>
 
             {navItems.map((item, index) => (
-              <a href="#" className="menu-link" key={index}>
+              <a href="#" className={styles["menu-link"]} key={index}>
                 {item.icon}
                 {item.title}
               </a>
@@ -72,16 +75,16 @@ const Navbar = () => {
         </nav>
       )}
 
-      <div className="navbar-action">
+      <div className={styles["navbar-action"]}>
         <SearchIcon />
         <ShuffleIcon />
         {auth.isLoggedIn && (
-          <button className="btn" onClick={auth.logout}>
+          <button className={styles["btn"]} onClick={auth.logout}>
             خروج
           </button>
         )}
         {!auth.isLoggedIn && (
-          <button className="btn" onClick={() => navigate("/login")}>
+          <button className={styles["btn"]} onClick={() => navigate("/login")}>
             ورود
           </button>
         )}
