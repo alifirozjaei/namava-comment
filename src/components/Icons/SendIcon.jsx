@@ -1,6 +1,6 @@
 import React from "react";
 
-const SendIcon = () => {
+const SendIcon = ({fill}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ const SendIcon = () => {
         />
       </mask>
       <g mask="url(#mask0_1860_275)">
-        <circle cx="17" cy="17" r="20" fill="#99C14D" />
+        <circle cx="17" cy="17" r="20" fill={fill} />
       </g>
     </svg>
   );

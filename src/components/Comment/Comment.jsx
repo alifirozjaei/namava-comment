@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import comment from "./comment.css";
+import styles from "./comment.module.css";
 import CircleWarningIcon from "../Icons/CircleWarningIcon.jsx";
 import ChevronDown from "../Icons/ChevronDown.jsx";
 import convertDate from "../../utils/convertDate.js";
@@ -67,8 +67,8 @@ const Comment = ({ data }) => {
   };
 
   return (
-    <div className="comment">
-      <div className="comment-header">
+    <div className={styles["comment"]}>
+      <div className={styles["comment-header"]}>
         <img
           src={`https://www.namava.ir/${data.profileAvatar}`}
           alt="Profile"
@@ -77,11 +77,11 @@ const Comment = ({ data }) => {
           {data.profileCaption} - {convertDate(data.createDateUTC)}
         </span>
       </div>
-      <div className="comment-content">
+      <div className={styles["comment-content"]}>
         {(data.flag != "Spoiled" || showContent) && <p>{data.body}</p>}
 
         {(data.flag != "Spoiled" || showContent) && (
-          <div className="comment-action">
+          <div className={styles["comment-action"]}>
             <CommentAction
               data={commentLikeDislike}
               likeHandler={likeHandler}
@@ -91,7 +91,7 @@ const Comment = ({ data }) => {
         )}
 
         {data.flag == "Spoiled" && showContent == false && (
-          <div className="spoil">
+          <div className={styles["spoil"]}>
             <CircleWarningIcon />
             <span>این نظر حاوی اسپویلر است و داستان فیلم را لو می دهد.</span>
             <span onClick={() => setShowContent(true)}>

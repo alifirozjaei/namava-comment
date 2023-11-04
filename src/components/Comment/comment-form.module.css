@@ -1,16 +1,16 @@
 .form {
-  display: flex;
-  gap: 20px;
   margin-top: 48px;
   margin-bottom: 50px;
 }
 
-.form svg {
-  margin-top: 5px;
+.form .first-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.form > div {
-  flex-grow: 1;
+.form .align {
+  margin-top: 10px;
 }
 
 .input {
@@ -28,4 +28,27 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.checkBox {
+  display: flex;
+  color: #fff;
+  text-align: right;
+  font-family: IRANYekan;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+  width: max-content;
+  margin-top: 16px;
+  margin-right: 45px;
+}
+
+.send {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
 }
