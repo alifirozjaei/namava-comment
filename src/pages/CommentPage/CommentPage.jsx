@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./comment-page.css";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import CommentForm from "../../components/Comment/CommentForm.jsx";
@@ -7,6 +7,8 @@ import CommentList from "../../components/Comment/CommentList.jsx";
 import getNowUTC from "../../utils/getNowUTC";
 import FetchButton from "../../components/Button/FetchButton.jsx";
 import EmptyComment from "../../components/Comment/EmptyComment.jsx";
+import AuthNavigationBox from "../../components/AuthNavigationBox/AuthNavigationBox.jsx";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const CommentPage = () => {
   const [commentText, setCommentText] = useState("");
@@ -15,15 +17,16 @@ const CommentPage = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [formLoading, setFormLoading] = useState(0);
+  const auth = useContext(AuthContext);
 
   // fetch first page of comment
-  useState(() => {
-    fetchComment(1, 10)
-      .then((data) => {
-        setComments(data.result);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  // useState(() => {
+  //   fetchComment(1, 10)
+  //     .then((data) => {
+  //       setComments(data.result);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   // add new comment
   const addCommentHandler = () => {
@@ -75,29 +78,40 @@ const CommentPage = () => {
     <>
       <Navbar />
       <div className="container">
-        <h3>نظرات کاربران</h3>
+        {!comments.length && !auth.isLoggedIn && <h3>نظرات کاربران</h3>}
+        <div className="container-content">
+          {(!!comments.length || auth.isLoggedIn) && <h3>نظرات کاربران</h3>}
+          {/* new comment form */}
+          {auth.isLoggedIn && (
+            <CommentForm
+              text={commentText}
+              isChecked={haveSpoil}
+              onChangeText={(e) => setCommentText(e.target.value)}
+              onChangeCheckBox={() => setHaveSpoil((hs) => !hs)}
+              addCommentHandler={addCommentHandler}
+              loading={formLoading}
+            />
+          )}
 
-        {/* new comment form */}
-        <CommentForm
-          text={commentText}
-          isChecked={haveSpoil}
-          onChangeText={(e) => setCommentText(e.target.value)}
-          onChangeCheckBox={() => setHaveSpoil((hs) => !hs)}
-          addCommentHandler={addCommentHandler}
-          loading={formLoading}
-        />
+          {!!comments.length && (
+            <>
+              <CommentList comments={comments} />
+              <FetchButton
+                onClick={fetchMoreComment}
+                loading={loading}
+                className={"fetch-btn"}
+              >
+                بیشتر
+              </FetchButton>
+            </>
+          )}
 
-        {/* <CommentList comments={comments} />
+          {!auth.isLoggedIn && (
+            <AuthNavigationBox>برای ثبت نظر باید وارد شوید.</AuthNavigationBox>
+          )}
 
-        <FetchButton
-          onClick={fetchMoreComment}
-          loading={loading}
-          className={"fetch-btn"}
-        >
-          بیشتر
-        </FetchButton> */}
-
-        <EmptyComment />
+          {!comments.length && <EmptyComment />}
+        </div>
       </div>
     </>
   );
