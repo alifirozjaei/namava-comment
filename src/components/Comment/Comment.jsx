@@ -1,69 +1,79 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./comment.module.css";
 import CircleWarningIcon from "../Icons/CircleWarningIcon.jsx";
 import ChevronDown from "../Icons/ChevronDown.jsx";
 import convertDate from "../../utils/convertDate.js";
-
 import CommentAction from "./CommentAction.jsx";
-const Comment = ({ data }) => {
+import { AuthContext } from "../../context/AuthContext.jsx";
+
+const Comment = ({ data, showAuthModal }) => {
   const [showContent, setShowContent] = useState(false);
   const [commentLikeDislike, setCommentLikeDislike] = useState({
     ...data.commentLikeDislike,
     first: true,
   });
+  const auth = useContext(AuthContext);
 
   const likeHandler = () => {
-    setCommentLikeDislike((prev) => {
-      if (prev.ownStatus == "None") {
-        return {
-          dislikeCount: prev.dislikeCount,
-          likeCount: prev.likeCount + 1,
-          ownStatus: "Like",
-          first: false,
-        };
-      } else if (prev.ownStatus == "Like") {
-        return {
-          dislikeCount: prev.dislikeCount,
-          likeCount: prev.likeCount - 1,
-          ownStatus: "None",
-          first: false,
-        };
-      } else {
-        return {
-          dislikeCount: prev.dislikeCount - 1,
-          likeCount: prev.likeCount + 1,
-          ownStatus: "Like",
-          first: false,
-        };
-      }
-    });
+    if (auth.isLoggedIn) {
+      setCommentLikeDislike((prev) => {
+        if (prev.ownStatus == "None") {
+          return {
+            dislikeCount: prev.dislikeCount,
+            likeCount: prev.likeCount + 1,
+            ownStatus: "Like",
+            first: false,
+          };
+        } else if (prev.ownStatus == "Like") {
+          return {
+            dislikeCount: prev.dislikeCount,
+            likeCount: prev.likeCount - 1,
+            ownStatus: "None",
+            first: false,
+          };
+        } else {
+          return {
+            dislikeCount: prev.dislikeCount - 1,
+            likeCount: prev.likeCount + 1,
+            ownStatus: "Like",
+            first: false,
+          };
+        }
+      });
+    } else {
+      showAuthModal();
+    }
   };
 
   const dislikeHandler = () => {
-    setCommentLikeDislike((prev) => {
-      if (prev.ownStatus == "None") {
-        return {
-          dislikeCount: prev.dislikeCount + 1,
-          likeCount: prev.likeCount,
-          ownStatus: "Dislike",
-          first: false,
-        };
-      } else if (prev.ownStatus == "Dislike") {
-        return {
-          dislikeCount: prev.dislikeCount - 1,
-          likeCount: prev.likeCount,
-          ownStatus: "None",
-          first: false,
-        };
-      } else {
-        return {
-          dislikeCount: prev.dislikeCount + 1,
-          likeCount: prev.likeCount - 1,
-          ownStatus: "Dislike",
-          first: false,
-        };
-      }
-    });
+    if (auth.isLoggedIn) {
+      setCommentLikeDislike((prev) => {
+        if (prev.ownStatus == "None") {
+          return {
+            dislikeCount: prev.dislikeCount + 1,
+            likeCount: prev.likeCount,
+            ownStatus: "Dislike",
+            first: false,
+          };
+        } else if (prev.ownStatus == "Dislike") {
+          return {
+            dislikeCount: prev.dislikeCount - 1,
+            likeCount: prev.likeCount,
+            ownStatus: "None",
+            first: false,
+          };
+        } else {
+          return {
+            dislikeCount: prev.dislikeCount + 1,
+            likeCount: prev.likeCount - 1,
+            ownStatus: "Dislike",
+            first: false,
+          };
+        }
+      });
+    } else {
+      showAuthModal()
+    }
   };
 
   return (

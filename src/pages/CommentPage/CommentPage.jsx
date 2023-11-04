@@ -20,13 +20,13 @@ const CommentPage = () => {
   const auth = useContext(AuthContext);
 
   // fetch first page of comment
-  // useState(() => {
-  //   fetchComment(1, 10)
-  //     .then((data) => {
-  //       setComments(data.result);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
+  useState(() => {
+    fetchComment(1, 10)
+      .then((data) => {
+        setComments(data.result);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   // add new comment
   const addCommentHandler = () => {
@@ -106,7 +106,7 @@ const CommentPage = () => {
             </>
           )}
 
-          {!auth.isLoggedIn && (
+          {!auth.isLoggedIn && !comments.length && (
             <AuthNavigationBox>برای ثبت نظر باید وارد شوید.</AuthNavigationBox>
           )}
 
