@@ -35,14 +35,14 @@
   color: #fff;
   text-align: right;
   font-family: IRANYekan;
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   gap: 16px;
   align-items: center;
   cursor: pointer;
-  width: max-content;
+  max-width: max-content;
   margin-top: 16px;
   margin-right: 45px;
 }
@@ -51,4 +51,16 @@
   cursor: pointer;
   align-items: center;
   display: flex;
+}
+
+@media screen and (min-width: 800px) {
+  .checkBox {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .checkBox {
+    font-size: 14px;
+  }
 }

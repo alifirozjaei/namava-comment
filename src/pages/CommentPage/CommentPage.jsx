@@ -6,6 +6,7 @@ import fetchComment from "../../services/fetchComment";
 import CommentList from "../../components/Comment/CommentList.jsx";
 import getNowUTC from "../../utils/getNowUTC";
 import FetchButton from "../../components/Button/FetchButton.jsx";
+import EmptyComment from "../../components/Comment/EmptyComment.jsx";
 
 const CommentPage = () => {
   const [commentText, setCommentText] = useState("");
@@ -86,7 +87,7 @@ const CommentPage = () => {
           loading={formLoading}
         />
 
-        <CommentList comments={comments} />
+        {/* <CommentList comments={comments} />
 
         <FetchButton
           onClick={fetchMoreComment}
@@ -94,7 +95,9 @@ const CommentPage = () => {
           className={"fetch-btn"}
         >
           بیشتر
-        </FetchButton>
+        </FetchButton> */}
+
+        <EmptyComment />
       </div>
     </>
   );
