@@ -1,13 +1,70 @@
 import React, { useState } from "react";
 import comment from "./comment.css";
-import Avatar from "../Icons/Avatar.jsx";
-import LikeIcon from "../Icons/LikeIcon.jsx";
-import DisLikeIcon from "../Icons/DisLikeIcon.jsx";
 import CircleWarningIcon from "../Icons/CircleWarningIcon.jsx";
 import ChevronDown from "../Icons/ChevronDown.jsx";
 import convertDate from "../../utils/convertDate.js";
+
+import CommentAction from "./CommentAction.jsx";
 const Comment = ({ data }) => {
   const [showContent, setShowContent] = useState(false);
+  const [commentLikeDislike, setCommentLikeDislike] = useState({
+    ...data.commentLikeDislike,
+    first: true,
+  });
+
+  const likeHandler = () => {
+    setCommentLikeDislike((prev) => {
+      if (prev.ownStatus == "None") {
+        return {
+          dislikeCount: prev.dislikeCount,
+          likeCount: prev.likeCount + 1,
+          ownStatus: "Like",
+          first: false,
+        };
+      } else if (prev.ownStatus == "Like") {
+        return {
+          dislikeCount: prev.dislikeCount,
+          likeCount: prev.likeCount - 1,
+          ownStatus: "None",
+          first: false,
+        };
+      } else {
+        return {
+          dislikeCount: prev.dislikeCount - 1,
+          likeCount: prev.likeCount + 1,
+          ownStatus: "Like",
+          first: false,
+        };
+      }
+    });
+  };
+
+  const dislikeHandler = () => {
+    setCommentLikeDislike((prev) => {
+      if (prev.ownStatus == "None") {
+        return {
+          dislikeCount: prev.dislikeCount + 1,
+          likeCount: prev.likeCount,
+          ownStatus: "Dislike",
+          first: false,
+        };
+      } else if (prev.ownStatus == "Dislike") {
+        return {
+          dislikeCount: prev.dislikeCount - 1,
+          likeCount: prev.likeCount,
+          ownStatus: "None",
+          first: false,
+        };
+      } else {
+        return {
+          dislikeCount: prev.dislikeCount + 1,
+          likeCount: prev.likeCount - 1,
+          ownStatus: "Dislike",
+          first: false,
+        };
+      }
+    });
+  };
 
   return (
     <div className="comment">
@@ -25,14 +82,11 @@ const Comment = ({ data }) => {
 
         {(data.flag != "Spoiled" || showContent) && (
           <div className="comment-action">
-            <span>
-              <LikeIcon />
-            </span>
-            <span>{data.commentLikeDislike.likeCount}</span>
-            <span>
-              <DisLikeIcon />
-            </span>
-            <span>{data.commentLikeDislike.dislikeCount}</span>
+            <CommentAction
+              data={commentLikeDislike}
+              likeHandler={likeHandler}
+              dislikeHandler={dislikeHandler}
+            />
           </div>
         )}
 

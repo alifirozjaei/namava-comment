@@ -26,6 +26,7 @@ const CommentPage = () => {
       .catch((error) => console.log(error));
   };
 
+
   return (
     <>
       <Navbar />
@@ -42,7 +43,9 @@ const CommentPage = () => {
 
         <CommentList comments={comments} />
 
-        <button className="fetch-btn" onClick={fetchMoreComment}>بیشتر</button>
+        <button className="fetch-btn" onClick={fetchMoreComment}>
+          بیشتر
+        </button>
       </div>
     </>
   );
