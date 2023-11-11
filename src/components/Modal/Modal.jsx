@@ -5,8 +5,14 @@ import CloseIcon from "../Icons/CloseIcon.jsx";
 import { useNavigate } from "react-router-dom";
 const Modal = ({ handleClose }) => {
   const navigate = useNavigate();
+  const modalCloseHandler = (e) => {
+    if (e.target.className === styles["modal"]) {
+      handleClose();
+    }
+  };
+  
   return (
-    <div className={styles["modal"]}>
+    <div className={styles["modal"]} onClick={modalCloseHandler}>
       <div className={styles["modal-body"]}>
         <span className={styles["close-icon"]} onClick={handleClose}>
           <CloseIcon />
