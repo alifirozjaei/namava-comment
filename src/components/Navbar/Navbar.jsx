@@ -31,6 +31,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
 
+  const closeNavbarHandler = (e) => {
+    if (e.target.tagName === "NAV") {
+      setNavbarToggle(false);
+    }
+  };
+
   return (
     <header className={styles["header"]}>
       <span
@@ -52,7 +58,7 @@ const Navbar = () => {
 
       {/* navbar for sm size */}
       {navbarToggle && (
-        <nav className={styles["nav-sm"]}>
+        <nav className={styles["nav-sm"]} onClick={closeNavbarHandler}>
           <div className={styles["menu"]}>
             <div
               className="row align-items-center"
