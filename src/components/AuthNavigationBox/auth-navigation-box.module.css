@@ -1,0 +1,77 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  color: var(--gray-white, #fff);
+  text-align: right;
+  font-family: IRANYekan;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  background: var(--gray-gray-5, #37383e);
+  margin: 0 auto;
+  margin-bottom: 32px;
+}
+
+.box div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box svg {
+  width: 40px;
+  height: 40px;
+}
+
+.box div:nth-child(2) button {
+  cursor: pointer;
+  width: 97px;
+  height: 42px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: all ease 0.3s;
+}
+
+.box .login-btn {
+  margin-right: 24px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box .register-btn {
+  color: black;
+  background-color: #eee;
+}
+
+.box .login-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.box .register-btn:hover {
+  background-color: #fff;
+}
+
+@media screen and (min-width: 500px) {
+  .box {
+    flex-direction: row;
+  }
+  .box div:nth-child(2) {
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .box {
+    width: 462px;
+  }
+}

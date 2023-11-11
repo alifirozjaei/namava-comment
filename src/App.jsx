@@ -1,25 +1,32 @@
 import React from "react";
 import "./App.css";
-import NamavaIcon from "./components/Icons/NamavaIcon.jsx";
-import LoginForm from "./components/Login/LoginForm.jsx";
 import { ToastProvider } from "./context/ToastContext.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import ToastWrapper from "./components/Toast/ToastWrapper.jsx";
+import CommentPage from "./pages/CommentPage/CommentPage.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/comments",
+    element: <CommentPage />,
+  },
+  {
+    path: "/",
+    element: <p>Home</p>,
+  },
+]);
+
 const App = () => {
   return (
     <>
       <ToastProvider>
-        <div className="app">
-          <div className="form-container">
-            <div className="row justify-content-between align-items-center">
-              <NamavaIcon />
-              <button className="btn">ثبت نام</button>
-            </div>
-            <div>
-              <ToastWrapper />
-            </div>
-            <LoginForm />
-          </div>
-        </div>
+        <ToastWrapper />
+        <RouterProvider router={router} />
       </ToastProvider>
     </>
   );

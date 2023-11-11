@@ -1,0 +1,66 @@
+.form {
+  margin-top: 48px;
+  margin-bottom: 50px;
+}
+
+.form .first-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form .align {
+  margin-top: 10px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 52px;
+  border-radius: 5px;
+  background: #f2f2f2;
+  padding: 16px;
+  color: #222327;
+  font-family: IRANYekan;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.checkBox {
+  display: flex;
+  color: #fff;
+  text-align: right;
+  font-family: IRANYekan;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+  max-width: max-content;
+  margin-top: 16px;
+  margin-right: 45px;
+}
+
+.send {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+}
+
+@media screen and (min-width: 800px) {
+  .checkBox {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .checkBox {
+    font-size: 14px;
+  }
+}

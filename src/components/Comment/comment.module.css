@@ -1,0 +1,131 @@
+.comment-header {
+  display: flex;
+  align-items: center;
+}
+
+.comment-header span {
+  color: #aaa;
+  text-align: right;
+  font-family: IRANYekan;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-right: 16px;
+}
+
+.comment-content {
+  margin-right: 54px;
+  color: #fff;
+  text-align: right;
+  font-family: IRANYekan;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-bottom: 1px solid #37383e;
+}
+
+.comment-action {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.comment-action span:nth-child(3) {
+  margin-right: 24px;
+}
+
+.comment-action span {
+  display: flex;
+  align-items: center;
+}
+
+.comment-action span:nth-child(even) {
+  color: #aaa;
+  text-align: center;
+  font-family: IRANYekan;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 27px;
+  height: 25px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.comment-action span:nth-child(odd) {
+  cursor: pointer;
+}
+
+.comment:last-child .comment-content {
+  border-bottom: none;
+}
+
+.spoil {
+  width: 100%;
+  height: 51px;
+  border-radius: 5px;
+  background: #37383e;
+  color: #fff;
+  text-align: right;
+  font-family: IRANYekan;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  margin-bottom: 32px;
+}
+
+.spoil span {
+  margin-right: 8px;
+}
+
+.spoil span:last-child {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.comment img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 800px) {
+  .spoil {
+    width: 459px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .comment img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (min-width: 1920) {
+  .comment-header span {
+    font-size: 14px;
+  }
+
+  .comment-content {
+    font-size: 14px;
+  }
+  .comment img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}
