@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "./comment-page.css";
+import styles from "./comment-page.module.css";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import CommentForm from "../../components/Comment/CommentForm.jsx";
 import fetchComment from "../../services/fetchComment";
@@ -77,9 +77,9 @@ const CommentPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className={styles["container"]}>
         {!comments.length && !auth.isLoggedIn && <h3>نظرات کاربران</h3>}
-        <div className="container-content">
+        <div className={styles["container-content"]}>
           {(!!comments.length || auth.isLoggedIn) && <h3>نظرات کاربران</h3>}
           {/* new comment form */}
           {auth.isLoggedIn && (
@@ -99,7 +99,7 @@ const CommentPage = () => {
               <FetchButton
                 onClick={fetchMoreComment}
                 loading={loading}
-                className={"fetch-btn"}
+                className={styles["fetch-btn"]}
               >
                 بیشتر
               </FetchButton>
