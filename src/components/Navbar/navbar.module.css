@@ -11,30 +11,49 @@
 .header {
   width: 100%;
   height: 60px;
-  background: linear-gradient(180deg, #121212 0%, rgba(18, 18, 18, 0) 99.86%);
+  background: #121212;
   display: flex;
   align-items: center;
   padding: 0 32px;
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
+  transition: all ease 0.3s;
+  z-index: 5;
 }
 
 .nav-sm {
+  opacity: 0;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.7);
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
+  z-index: -10;
+  transition: all ease 0.3s;
+}
+
+.active {
+  opacity: 1;
   z-index: 10;
 }
 
-.nav-sm .menu {
+.active .menu {
   width: 250px;
   height: 100%;
   background-color: #222327;
   padding: 24px;
-  animation-name: move;
-  animation-duration: 0.5s;
+  transform: translateX(0);
+}
+
+.menu {
+  width: 250px;
+  height: 100%;
+  background-color: #222327;
+  padding: 24px;
+  transform: translateX(100%);
+  transition: all ease 0.3s;
 }
 
 .nav-sm .menu .menu-link {

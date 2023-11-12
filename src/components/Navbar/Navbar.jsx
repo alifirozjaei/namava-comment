@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NamavaIcon from "../Icons/NamavaIcon.jsx";
 import styles from "./navbar.module.css";
 import SearchIcon from "../Icons/SearchIcon.jsx";
@@ -28,17 +28,39 @@ const navItems = [
 
 const Navbar = () => {
   const [navbarToggle, setNavbarToggle] = useState(false);
+  const [top, setTop] = useState(0);
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
 
   const closeNavbarHandler = (e) => {
-    if (e.target.tagName === "NAV") {
-      setNavbarToggle(false);
-    }
+    setNavbarToggle(false);
   };
 
+  useEffect(() => {
+    let prevScrollpos = window.pageYOffset;
+    const onScroll = (e) => {
+      let currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        // if scroll up show navbar
+        setTop(0);
+      } else {
+        // if scroll down hide navbar
+        setTop("-100px");
+      }
+      prevScrollpos = currentScrollPos;
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      removeEventListener("scroll", onScroll);
+    };
+  }, [top]);
+
+  const navClass = navbarToggle
+    ? styles["nav-sm"] + " " + styles["active"]
+    : styles["nav-sm"];
+
   return (
-    <header className={styles["header"]}>
+    <header className={styles["header"]} style={{ top: top }}>
       <span
         className={styles["toggle-navbar"]}
         onClick={() => setNavbarToggle(true)}
@@ -57,31 +79,29 @@ const Navbar = () => {
       </nav>
 
       {/* navbar for sm size */}
-      {navbarToggle && (
-        <nav className={styles["nav-sm"]} onClick={closeNavbarHandler}>
-          <div className={styles["menu"]}>
-            <div
-              className="row align-items-center"
-              style={{ marginBottom: "20px" }}
+      <nav className={navClass} onClick={closeNavbarHandler}>
+        <div className={styles["menu"]} onClick={(e) => e.stopPropagation()}>
+          <div
+            className="row align-items-center"
+            style={{ marginBottom: "20px" }}
+          >
+            <span
+              className={styles["toggle-navbar"]}
+              onClick={() => setNavbarToggle(false)}
             >
-              <span
-                className={styles["toggle-navbar"]}
-                onClick={() => setNavbarToggle(false)}
-              >
-                <MenuIcon />
-              </span>
-              <NamavaIcon />
-            </div>
-
-            {navItems.map((item, index) => (
-              <a href="#" className={styles["menu-link"]} key={index}>
-                {item.icon}
-                {item.title}
-              </a>
-            ))}
+              <MenuIcon />
+            </span>
+            <NamavaIcon />
           </div>
-        </nav>
-      )}
+
+          {navItems.map((item, index) => (
+            <a href="#" className={styles["menu-link"]} key={index}>
+              {item.icon}
+              {item.title}
+            </a>
+          ))}
+        </div>
+      </nav>
 
       <div className={styles["navbar-action"]}>
         <SearchIcon />
