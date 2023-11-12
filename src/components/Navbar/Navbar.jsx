@@ -60,23 +60,47 @@ const Navbar = () => {
     : styles["nav-sm"];
 
   return (
-    <header className={styles["header"]} style={{ top: top }}>
-      <span
-        className={styles["toggle-navbar"]}
-        onClick={() => setNavbarToggle(true)}
-      >
-        <MenuIcon />
-      </span>
-      <NamavaIcon />
+    <>
+      <header className={styles["header"]} style={{ top: top }}>
+        <span
+          className={styles["toggle-navbar"]}
+          onClick={() => setNavbarToggle(true)}
+        >
+          <MenuIcon />
+        </span>
+        <NamavaIcon />
 
-      {/* navabr for md, lg, xlg size */}
-      <nav className={styles["nav"]}>
-        {navItems.map((item, index) => (
-          <a href="#" className={styles["nav-link"]} key={index}>
-            {item.title}
-          </a>
-        ))}
-      </nav>
+        {/* navabr for md, lg, xlg size */}
+        <nav className={styles["nav"]}>
+          {navItems.map((item, index) => (
+            <a href="#" className={styles["nav-link"]} key={index}>
+              {item.title}
+            </a>
+          ))}
+        </nav>
+
+        <div className={styles["navbar-action"]}>
+          <SearchIcon />
+          <ShuffleIcon />
+
+          {/* if user is logged in show logout button */}
+          {auth.isLoggedIn && (
+            <button className={styles["btn"]} onClick={auth.logout}>
+              خروج
+            </button>
+          )}
+
+          {/* if user is not logged in show login button */}
+          {!auth.isLoggedIn && (
+            <button
+              className={styles["btn"]}
+              onClick={() => navigate("/login")}
+            >
+              ورود
+            </button>
+          )}
+        </div>
+      </header>
 
       {/* navbar for sm size */}
       <nav className={navClass} onClick={closeNavbarHandler}>
@@ -102,26 +126,7 @@ const Navbar = () => {
           ))}
         </div>
       </nav>
-
-      <div className={styles["navbar-action"]}>
-        <SearchIcon />
-        <ShuffleIcon />
-
-        {/* if user is logged in show logout button */}
-        {auth.isLoggedIn && (
-          <button className={styles["btn"]} onClick={auth.logout}>
-            خروج
-          </button>
-        )}
-
-        {/* if user is not logged in show login button */}
-        {!auth.isLoggedIn && (
-          <button className={styles["btn"]} onClick={() => navigate("/login")}>
-            ورود
-          </button>
-        )}
-      </div>
-    </header>
+    </>
   );
 };
 

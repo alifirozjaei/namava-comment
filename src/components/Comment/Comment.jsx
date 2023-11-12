@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styles from "./comment.module.css";
 import CircleWarningIcon from "../Icons/CircleWarningIcon.jsx";
 import ChevronDown from "../Icons/ChevronDown.jsx";
 import convertDate from "../../utils/convertDate.js";
 import CommentAction from "./CommentAction.jsx";
-import { AuthContext } from "../../context/AuthContext.jsx";
 
 const Comment = ({ data, showAuthModal }) => {
   const [showContent, setShowContent] = useState(false);
