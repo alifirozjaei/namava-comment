@@ -80,6 +80,7 @@
   align-items: center;
   padding: 0 12px;
   margin-bottom: 32px;
+  cursor: pointer;
 }
 
 .spoil span {
@@ -91,7 +92,6 @@
   display: flex;
   align-items: center;
   padding: 5px;
-  cursor: pointer;
 }
 
 .comment img {

@@ -6,32 +6,57 @@ import checkBox from "../../lottie/checkboxLottie.json";
 import send from "../../lottie/sentLottie.json";
 import turning from "../../lottie/turningLottie.json";
 import { Player } from "@lottiefiles/react-lottie-player";
-const CommentForm = ({
-  isChecked,
-  text,
-  onChangeText,
-  onChangeCheckBox,
-  addCommentHandler,
-  loading,
-}) => {
-  const onClickHandler = () => {
-    if (!loading && text.trim()) {
-      addCommentHandler();
+import getNowUTC from "../../utils/getNowUTC.js";
+const CommentForm = ({ addCommentHandler }) => {
+  const [commentText, setCommentText] = useState("");
+  const [haveSpoil, setHaveSpoil] = useState(false);
+  const [loading, setLoading] = useState(0);
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!loading && commentText.trim()) {
+      if (!loading) {
+        setLoading(1);
+        const newComment = {
+          profileAvatar:
+            "/Content/Upload/Images/e9b409a9-88d8-4ee5-a81e-6cddc50782b0.png",
+          profileCaption: "Ali",
+          createDateUTC: getNowUTC(),
+          body: commentText,
+          flag: haveSpoil ? "Spoiled" : "None",
+          id: crypto.randomUUID(),
+          commentLikeDislike: {
+            dislikeCount: 0,
+            likeCount: 0,
+            ownStatus: "None",
+          },
+        };
+        setTimeout(() => {
+          addCommentHandler(newComment);
+          setCommentText("");
+          setHaveSpoil(false);
+          setLoading(2);
+          setTimeout(() => {
+            setLoading(0);
+          }, 1000);
+        }, 2000);
+      }
     }
   };
+
   return (
-    <div className={styles["form"]}>
+    <form onSubmit={onSubmitHandler} className={styles["form"]}>
       <div className={styles["first-row"]}>
         <Avatar />
         <input
           type="text"
           className={styles["input"]}
           placeholder="نظرتان درباره این فیلم چیست؟"
-          onChange={onChangeText}
-          value={text}
+          onChange={(e) => setCommentText(e.target.value)}
+          value={commentText}
         />
 
-        <span onClick={onClickHandler} className={styles["send"]}>
+        <button onSubmit={onSubmitHandler} className={styles["send"]}>
           {!!loading && (
             <Player
               autoplay
@@ -40,12 +65,15 @@ const CommentForm = ({
               style={{ height: "34px", width: "34px" }}
             ></Player>
           )}
-          {!loading && !text.trim() && <SendIcon fill={"#666666"} />}
-          {!loading && text.trim() && <SendIcon fill={"#99c14d"} />}
-        </span>
+          {!loading && !commentText.trim() && <SendIcon fill={"#666666"} />}
+          {!loading && commentText.trim() && <SendIcon fill={"#99c14d"} />}
+        </button>
       </div>
-      <div onClick={onChangeCheckBox} className={styles["checkBox"]}>
-        {isChecked && (
+      <div
+        onClick={() => setHaveSpoil((hs) => !hs)}
+        className={styles["checkBox"]}
+      >
+        {haveSpoil && (
           <Player
             keepLastFrame={true}
             autoplay={true}
@@ -54,7 +82,7 @@ const CommentForm = ({
           ></Player>
         )}
 
-        {!isChecked && (
+        {!haveSpoil && (
           <Player
             src={checkBox}
             direction="-1"
@@ -64,7 +92,7 @@ const CommentForm = ({
 
         <span>این نظر حاوی اسپویلر است و داستان فیلم را لو می‌دهد.</span>
       </div>
-    </div>
+    </form>
   );
 };
 
