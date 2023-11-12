@@ -51,6 +51,9 @@
   cursor: pointer;
   align-items: center;
   display: flex;
+  outline: none;
+  border: none;
+  background: none;
 }
 
 @media screen and (min-width: 800px) {

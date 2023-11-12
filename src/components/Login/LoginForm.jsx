@@ -90,7 +90,7 @@ const LoginForm = () => {
               toasts.addToast(data.error.message, "error");
             }
           } else {
-            toasts.addToast("ورود موفقیت آمیز بود.");
+            // toasts.addToast("ورود موفقیت آمیز بود.");
             auth.login(data.result);
             navigate("/comments")
           }
